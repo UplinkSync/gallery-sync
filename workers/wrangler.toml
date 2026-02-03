@@ -1,0 +1,21 @@
+name = "gallery-sync-workers"
+main = "src/worker.js"
+compatibility_date = "2024-12-01"
+
+[[kv_namespaces]]
+binding = "LICENSES"
+id = "<PROD_LICENSES_NAMESPACE_ID>"
+preview_id = "<PREVIEW_LICENSES_NAMESPACE_ID>"
+
+[[kv_namespaces]]
+binding = "EVENTS"
+id = "<PROD_EVENTS_NAMESPACE_ID>"
+preview_id = "<PREVIEW_EVENTS_NAMESPACE_ID>"
+
+[vars]
+# Non-secret configuration (if needed).
+# STRIPE_PRICE_SEATS_BASIC = ""
+# STRIPE_PRICE_SEATS_PRO = ""
+
+[env.staging]
+name = "gallery-sync-workers-staging"

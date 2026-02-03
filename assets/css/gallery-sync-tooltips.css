@@ -1,0 +1,113 @@
+/* Gallery Sync Admin – Styled Tooltips (WP-friendly) */
+
+.gallery-sync-tip {
+    position: relative;
+}
+
+.gallery-sync-tip::after {
+    content: attr(data-gallery-sync-tooltip);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateX(10px) translateY(-50%);
+    background: #23282d;
+    color: #f1f1f1;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: normal;
+    width: 240px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    z-index: 12;
+}
+
+.gallery-sync-tip::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateX(2px) translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: #23282d;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 12;
+}
+
+.gallery-sync-tip:hover::after,
+.gallery-sync-tip:focus::after,
+.gallery-sync-tip:hover::before,
+.gallery-sync-tip:focus::before {
+    opacity: 1;
+    transform: translateX(10px) translateY(-50%);
+}
+
+/* Open state toggled by JS for touch/keyboard */
+.gallery-sync-tip.gallery-sync-tip-open::after,
+.gallery-sync-tip.gallery-sync-tip-open::before {
+    opacity: 1;
+    transform: translateX(10px) translateY(-50%);
+}
+
+/* Narrow screens: place bubble below */
+@media (max-width: 782px) {
+    .gallery-sync-tip::after {
+        top: 100%;
+        left: 0;
+        transform: translateY(8px);
+        width: 220px;
+    }
+    .gallery-sync-tip::before {
+        top: 100%;
+        left: 12px;
+        transform: translateY(1px) rotate(90deg);
+        border: 6px solid transparent;
+        border-top-color: #23282d;
+    }
+    .gallery-sync-tip:hover::after,
+    .gallery-sync-tip:focus::after,
+    .gallery-sync-tip:hover::before,
+    .gallery-sync-tip:focus::before,
+    .gallery-sync-tip.gallery-sync-tip-open::after,
+    .gallery-sync-tip.gallery-sync-tip-open::before {
+        transform: translateY(8px);
+    }
+}
+
+/* RTL: flip to the left */
+.gallery-sync-tip-rtl::after,
+.gallery-sync-tip-rtl.gallery-sync-tip-open::after {
+    left: auto;
+    right: 100%;
+    transform: translateX(-10px) translateY(-50%);
+}
+
+.gallery-sync-tip-rtl::before,
+.gallery-sync-tip-rtl.gallery-sync-tip-open::before {
+    left: auto;
+    right: 100%;
+    transform: translateX(-2px) translateY(-50%);
+    border-right-color: transparent;
+    border-left-color: #23282d;
+}
+
+@media (max-width: 782px) {
+    .gallery-sync-tip-rtl::after,
+    .gallery-sync-tip-rtl.gallery-sync-tip-open::after {
+        left: 0;
+        right: auto;
+        transform: translateY(8px);
+    }
+    .gallery-sync-tip-rtl::before,
+    .gallery-sync-tip-rtl.gallery-sync-tip-open::before {
+        right: auto;
+        left: 12px;
+        transform: translateY(1px) rotate(90deg);
+        border-left-color: transparent;
+        border-top-color: #23282d;
+    }
+}

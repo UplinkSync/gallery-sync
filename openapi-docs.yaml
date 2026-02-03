@@ -1,0 +1,82 @@
+version: 1
+defaults:
+  overwrite: true
+output:
+  base_dir: docs
+  sources_dir: docs/libraries
+  integrations_dir: docs/plugins
+  index: docs/openapi-generated-index.md
+specs:
+  sources:
+    - id: immich
+      name: Immich
+      spec: https://raw.githubusercontent.com/immich-app/immich/v2.4.1/open-api/immich-openapi-specs.json
+      output: immich-api.md
+      status: active
+      notes: "Pinned to Immich v2.4.1 tag"
+    - id: google-photos
+      name: Google Photos
+      spec_type: discovery
+      discovery_url: https://www.googleapis.com/discovery/v1/apis/photoslibrary/v1/rest
+      output: google-photos-api.md
+      status: active
+      notes: "Generated from Google Discovery doc with curated endpoints"
+    - id: google-drive
+      name: Google Drive
+      spec_type: discovery
+      discovery_url: https://www.googleapis.com/discovery/v1/apis/drive/v3/rest
+      output: google-drive-api.md
+      status: active
+      notes: "Generated from Google Discovery doc with curated endpoints"
+    - id: dropbox
+      name: Dropbox
+      spec_type: markdown
+      servers:
+        - https://api.dropboxapi.com
+        - https://content.dropboxapi.com
+      output: dropbox-api.md
+      status: active
+      notes: "Generated from curated endpoints in markdown"
+    - id: onedrive
+      name: OneDrive
+      spec: https://aka.ms/graph/v1.0/openapi.yaml
+      output: onedrive-api.md
+      status: active
+      notes: "Generated from Microsoft Graph OpenAPI v1.0 with curated endpoints"
+    - id: nextcloud
+      name: Nextcloud
+      spec: null
+      output: nextcloud-api.md
+      status: manual
+      notes: "No reliable OpenAPI spec"
+    - id: owncloud
+      name: ownCloud
+      spec: null
+      output: owncloud-api.md
+      status: manual
+      notes: "No reliable OpenAPI spec"
+    - id: flickr
+      name: Flickr
+      spec: null
+      output: flickr-api.md
+      status: manual
+      notes: "No reliable OpenAPI spec"
+  integrations:
+    - id: nextgen
+      name: NextGEN Gallery
+      spec: null
+      output: nextgen-api.md
+      status: manual
+      notes: "No reliable OpenAPI spec"
+    - id: envira
+      name: Envira Gallery
+      spec: null
+      output: envira-api.md
+      status: manual
+      notes: "No reliable OpenAPI spec"
+    - id: foogallery
+      name: FooGallery
+      spec: null
+      output: foogallery-api.md
+      status: manual
+      notes: "No reliable OpenAPI spec"
