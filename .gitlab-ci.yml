@@ -1,5 +1,5 @@
 include:
-  - project: '***'
+  - project: 'ops/ci-templates'
     ref: main
     file: '/templates/wordpress-plugin.gitlab-ci.yml'
 
