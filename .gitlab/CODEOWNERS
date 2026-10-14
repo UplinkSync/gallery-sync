@@ -1,0 +1,63 @@
+# Code owners — dirwin/wp-plugin-gallerysync
+#
+# This GitLab is CE (Free): GitLab itself does NOT enforce "approval from code owners".
+# Enforcement is the `owner_review_gate` job (.gitlab/ci/owner_review_gate.py, copied from
+# dirwin/wp-site-uplinksync). It reads THIS FILE FROM THE MR's TARGET BRANCH, lists the MR's
+# changed paths, and fails the MR pipeline unless @dirwin has approved the MR after its latest
+# push whenever any changed path matches a rule below. With "Pipelines must succeed" on, a red
+# gate blocks the merge.
+#
+# Everything NOT matched here is "low-risk": an MR labelled `low-risk` with a green pipeline
+# and all threads resolved may be merged by the Paperclip agent token (paperclip-agents-20261014).
+# Changing this file is itself owner-reviewed.
+#
+# Syntax (gitignore-like): leading "/" = repo root; trailing "/" = whole directory;
+# "*" = within one path segment; "**" = any depth; a pattern without "/" matches a file
+# or directory name at any depth.
+
+[CI, deploy and automation] @dirwin
+/.gitlab-ci.yml
+/.gitlab/
+/.github/
+/tools/ci/
+/scripts/
+/deploy/
+/ci/
+
+[Configuration and secrets] @dirwin
+/wp-config*
+/.htaccess*
+/.gitignore
+/.gitleaks*
+/.private/
+.env*
+*.env
+*secret*
+*credential*
+*.pem
+*.key
+
+[Agent / tooling instructions] @dirwin
+/.claude/
+/.continue/
+/.vscode/
+AGENTS.md
+CLAUDE.md
+CODEX.md
+/setup_agents_md.sh
+
+[Plugin server-side code, build and dependencies] @dirwin
+*.php
+/includes/
+/src/
+/worker/
+/workers/
+/supabase/
+/infrastructure/
+/config/
+/tools/
+/build.mjs
+/composer.*
+/package.json
+/package-lock.json
+*.toml

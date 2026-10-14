@@ -10,3 +10,20 @@ variables:
   # committed (missing since first commit 2026-02-03). Remove this flag once
   # the helpers module is committed. See README "Known issues".
   PREVIEW_SKIP_ACTIVATE: "1"
+
+# owner_review_gate — CE substitute for "Require approval from code owners" (Premium-only).
+# Reads .gitlab/CODEOWNERS from the MR's TARGET branch and fails the MR pipeline unless the
+# owner (user id 2, dirwin) approved after the latest push whenever a code-owned path changed.
+# With "Pipelines must succeed" this blocks the merge; MRs touching no code-owned path pass and
+# may be merged by the Paperclip agent token when labelled `low-risk`. OWNER_GATE_TOKEN = masked
+# read_api CI variable (project token owner-gate-ro-20261014). After approving, the owner re-runs
+# this job. Changing this job/file is itself code-owned. Script lives under .gitlab/ (never deployed).
+owner_review_gate:
+  stage: validate
+  image: python:3-alpine
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - python3 .gitlab/ci/owner_review_gate.py --selftest
+    - python3 .gitlab/ci/owner_review_gate.py
